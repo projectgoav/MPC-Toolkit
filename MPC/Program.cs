@@ -6,6 +6,7 @@ using System.Text;
 using System.IO;
 
 using Nini.Config;
+using MPC.api;
 
 namespace MPC
 {
@@ -39,8 +40,10 @@ namespace MPC
         private void Run()
         {
             //Load configuration settings and close if they are equal to null
-            Config = FileIO.LoadConfig();
-            if (Config == null) { Console.WriteLine("\n\n>> Exited with error code 0x2"); System.Environment.Exit(2); } 
+            api.MPC.init();
+
+            //Config = FileIO.LoadConfig();
+            //if (Config == null) { Console.WriteLine("\n\n>> Exited with error code 0x2"); System.Environment.Exit(2); } 
 
 
             //Enter Main Command Loop and get input from user
@@ -55,14 +58,9 @@ namespace MPC
                 {
                     switch (cmd[0])
                     {
-                        case "compile": { Compile(null); break; }
-                        case "clean": { Clean(cmd); break; }
-                        case "publish":
-                            {
-                                FTP ftp = new FTP(Config.Username);
-                                ftp.Publish(Config.PublishLocation, Config.Pages.Length);
-                                break;
-                            }
+                        case "compile": { api.MPC.Compile(null); break; }
+                        case "clean":   { Clean(cmd); break; }
+                        case "publish": { api.MPC.Publish(null); break; }
                     }
                 }
 

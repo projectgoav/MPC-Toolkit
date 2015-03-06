@@ -4,23 +4,22 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2110B36F-78E5-428D-9573-31D1CCEFF69C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{9A66FCE2-471B-4D71-9D77-033E89D78A12}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MPC</RootNamespace>
-    <AssemblyName>MPC</AssemblyName>
+    <RootNamespace>MPC.api</RootNamespace>
+    <AssemblyName>MPC.api</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
-    <AssemblyInfoFilePath>C:\Users\Ewan\Documents\Church\Church Website\DEV\MPC\MPC\Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
+    <AssemblyInfoFilePath>C:\Users\Ewan\Documents\Church\Church Website\DEV\MPC-Toolkit\MPC.api\Properties\AssemblyInfo.cs</AssemblyInfoFilePath>
     <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
     <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
     <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
-    <AssemblyVersionSettings>None.IncrementOnDemand.Increment.TimeStamp</AssemblyVersionSettings>
-    <AssemblyVersion>1.1.71.1743</AssemblyVersion>
+    <AssemblyVersionSettings>None.IncrementOnDemand.Increment.DateStamp</AssemblyVersionSettings>
+    <AssemblyVersion>1.0.5.15065</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -30,7 +29,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -38,12 +36,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Nini, Version=1.1.0.0, Culture=neutral, PublicKeyToken=691faec150a7fa7b, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Nini">
       <HintPath>..\..\..\..\..\Instlallers\Nini\Bin\DotNet\2.0\Release\Nini.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -55,22 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
-    <Compile Include="FileIO.cs" />
-    <Compile Include="FTP.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Commands\Compile.cs" />
+    <Compile Include="Commands\Publish.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="IO\ConfigurationIO.cs" />
+    <Compile Include="IO\FileSystemAccess.cs" />
+    <Compile Include="IO\HTMLLoader.cs" />
+    <Compile Include="MPC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Config.ini">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MPC.api\MPC.api.csproj">
-      <Project>{9a66fce2-471b-4d71-9d77-033e89d78a12}</Project>
-      <Name>MPC.api</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

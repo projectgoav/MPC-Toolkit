@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPC", "MPC\MPC.csproj", "{2110B36F-78E5-428D-9573-31D1CCEFF69C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MPC.api", "MPC.api\MPC.api.csproj", "{9A66FCE2-471B-4D71-9D77-033E89D78A12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{2110B36F-78E5-428D-9573-31D1CCEFF69C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2110B36F-78E5-428D-9573-31D1CCEFF69C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2110B36F-78E5-428D-9573-31D1CCEFF69C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A66FCE2-471B-4D71-9D77-033E89D78A12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A66FCE2-471B-4D71-9D77-033E89D78A12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A66FCE2-471B-4D71-9D77-033E89D78A12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A66FCE2-471B-4D71-9D77-033E89D78A12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
