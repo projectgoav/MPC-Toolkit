@@ -15,11 +15,6 @@ namespace MPC
     /// </summary>
     class Program
     {
-        public const string CONFIG_FILE = "Config.ini";
-
-        //Configuration
-        private Configuration Config;
-
         private string[] Commands = { "compile", "publish", "clean" };
 
 
@@ -41,10 +36,6 @@ namespace MPC
         {
             //Load configuration settings and close if they are equal to null
             api.MPC.init();
-
-            //Config = FileIO.LoadConfig();
-            //if (Config == null) { Console.WriteLine("\n\n>> Exited with error code 0x2"); System.Environment.Exit(2); } 
-
 
             //Enter Main Command Loop and get input from user
             Console.Write("MPC> ");
@@ -70,66 +61,6 @@ namespace MPC
             }
 
         }
-
-        //Compiles pages with Headers and footers
-        private void Compile(string[] cmd)
-        {
-            DateTime First = DateTime.Now;
-
-            //Load in Template Text
-            string Header = FileIO.LoadHTML(Config.SourceLocation + Config.HeaderTemplate);
-            string Footer = FileIO.LoadHTML(Config.SourceLocation + Config.FooterTemplate);
-            string NavBar = FileIO.LoadHTML(Config.SourceLocation + Config.NavTemplate);
-            string Modals = FileIO.LoadHTML(Config.SourceLocation + Config.ModalTemplate);
-
-            Console.WriteLine("> Loaded templates");
-
-
-            for (int i = 0; i < Config.Pages.Length; ++i)
-            {
-                Console.Write("> (working) Page: {0}", Config.Pages[i]);
-
-                string PageTitle = Config.Pages[i].Replace(".html", "");
-                string PageNav = NavBar;
-                string PageContent = null;
-
-                switch (PageTitle)
-                {
-                    case "index": { PageNav = PageNav.Replace("id=\"Home\"", "id=\"Home_A\""); break; }
-                    case "worship": { PageNav = PageNav.Replace("id=\"Worship\"", "id=\"Worship_A\""); break; }
-                    case "people": { PageNav = PageNav.Replace("id=\"People\"", "id=\"People_A\""); break; }
-                    case "find": { PageNav = PageNav.Replace("id=\"Contact\"", "id=\"Contact_A\""); break; }
-                    case "future": { PageNav = PageNav.Replace("id=\"Future\"", "id=\"Future_A\""); break; }
-
-                    //We need to do something special here and load in our modals for the Groups
-                    case "groups": { 
-                        PageNav = PageNav.Replace("id=\"Groups\"", "id=\"Groups_A\"");
-                        PageNav += Modals;
-                        break; }
-
-                    
-                    default: break;
-                }
-
-                //Put the page together and save elsewhere
-                PageContent = Header + PageNav;
-                PageContent += FileIO.LoadHTML(Config.SourceLocation + Config.Pages[i]);
-                PageContent += Footer;
-
-                File.WriteAllText(Config.PublishLocation + Config.Pages[i], PageContent);
-                Console.Write("\r> (DONE) Page: {0}                          \n", Config.Pages[i]);
-            }
-
-            Console.Write("\n> (working) Copying design files...");
-            FileIO.CopyDesign(Config.DesignLocation, Config.Folders, Config.PublishLocation);
-            Console.Write("\r> (DONE) Copied design files          \n");
-
-            DateTime Second = DateTime.Now;
-            TimeSpan TimeTaken = Second - First;
-
-            Console.WriteLine("\n> Compiled {0} page(s) in {1}ms\n", Config.Pages.Length, TimeTaken.TotalMilliseconds);
-        }
-
 
         private static void Clean(string[] cmd)
         {
