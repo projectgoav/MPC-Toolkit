@@ -34,7 +34,7 @@ namespace MPC
         /// </summary>
         private void Run()
         {
-            //Load configuration settings and close if they are equal to null
+            //Load configuration settings
             api.MPC.init();
 
             //Enter Main Command Loop and get input from user

@@ -185,7 +185,7 @@ namespace MPC.api.Commands
             #if DEBUG
             catch (Exception e) { Console.WriteLine("\n\n>> * FTP Error * \nMessage: {0} \n\nTrace{1}", e.Message, e.StackTrace); return false; } 
             #else
-            catch (Exception e) { return false; }
+            catch (Exception e) { Console.WriteLine("\n\n>> * FTP Error *\n"); return false; }
             #endif
         }
     }
