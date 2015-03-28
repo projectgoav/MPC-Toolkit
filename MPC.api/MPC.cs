@@ -24,6 +24,11 @@ namespace MPC.api
         private static Publish Uploader;
 
         /// <summary>
+        /// Handles sending of API messages to desination
+        /// </summary>
+        public static MPCOut MPCOut = new MPCOut();
+
+        /// <summary>
         /// Initilize MPC API
         /// TODO Add startup options here
         /// </summary>
@@ -51,6 +56,7 @@ namespace MPC.api
         {
             return Uploader.Run(cmd);
         }
+
 
 
     }
