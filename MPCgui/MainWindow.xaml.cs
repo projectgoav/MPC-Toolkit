@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using MPC.api;
+
 namespace MPCgui
 {
     /// <summary>
@@ -23,7 +25,17 @@ namespace MPCgui
         {
             InitializeComponent();
 
+            //Setup API to suuport message redirection
+            MPC.api.MPC.MPCOut.OnAPIMessage += MPCOut_OnAPIMessage;
+            MPC.api.MPC.init();
+
             MPCOut.Items.Add("MPC> Waiting... ");
+        }
+
+        //Handles output from API to the GUI
+        void MPCOut_OnAPIMessage(string Message)
+        {
+            MPCOut.Items.Add(Message);
         }
 
         private void btnCompile_Click(object sender, RoutedEventArgs e)

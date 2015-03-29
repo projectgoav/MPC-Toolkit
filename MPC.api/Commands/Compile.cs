@@ -28,12 +28,12 @@ namespace MPC.api.Commands
             string NavBar = PageLoader.Load(MPC.cfg.SourceLocation + MPC.cfg.NavTemplate);
             string Modals = PageLoader.Load(MPC.cfg.SourceLocation + MPC.cfg.ModalTemplate);
 
-            Console.WriteLine("> Loaded templates");
+            MPC.MPCOut.SendMessage("> Loaded templates");
 
 
             for (int i = 0; i < MPC.cfg.Pages.Length; ++i)
             {
-                Console.Write("> (working) Page: {0}", MPC.cfg.Pages[i]);
+                MPC.MPCOut.SendMessage("> (working) Page: " +  MPC.cfg.Pages[i]);
 
                 string PageTitle = MPC.cfg.Pages[i].Replace(".html", "");
                 string PageNav = NavBar;
@@ -65,23 +65,23 @@ namespace MPC.api.Commands
                 PageContent += Footer;
 
                 File.WriteAllText(MPC.cfg.PublishLocation + MPC.cfg.Pages[i], PageContent);
-                Console.Write("\r> (DONE) Page: {0}                          \n", MPC.cfg.Pages[i]);
+                MPC.MPCOut.SendMessage("\r> (DONE) Page: {0} " + MPC.cfg.Pages[i] + "                       \n");
             }
 
-            Console.Write("\n> (working) Copying design files...");
+            MPC.MPCOut.SendMessage("\n> (working) Copying design files...");
 
             //Copy all directories
             for (int i = 0; i < MPC.cfg.Folders.Length; ++i)
             {
                 FileSystemAccess.DirectoryCopy(MPC.cfg.DesignLocation + MPC.cfg.Folders[i], MPC.cfg.PublishLocation + MPC.cfg.Folders[i], true);
             }
-            
-            Console.Write("\r> (DONE) Copied design files          \n");
+
+            MPC.MPCOut.SendMessage("\r> (DONE) Copied design files          \n");
 
             DateTime Second = DateTime.Now;
             TimeSpan TimeTaken = Second - First;
 
-            Console.WriteLine("\n> Compiled {0} page(s) in {1}ms\n", MPC.cfg.Pages.Length, TimeTaken.TotalMilliseconds);
+            //MPC.MPCOut.SendMessage("\n> Compiled {0} page(s) in {1}ms\n", MPC.cfg.Pages.Length, TimeTaken.TotalMilliseconds);
         }
     }
 }

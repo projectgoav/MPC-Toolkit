@@ -13,7 +13,7 @@ namespace MPC.api
 
 
         //Handles sending a message to either the console, or to the Program that has attached to the API
-        protected virtual void SendMessage(string Message)
+        public virtual void SendMessage(string Message)
         {
             if (OnAPIMessage != null)
             {
