@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.IO;
+
 using Nini.Config;
 
 using MPC.api.Configuration;
@@ -45,7 +47,7 @@ namespace MPC.api.IO
 
                 return cfg;
             }
-            catch (Exception e) { Console.WriteLine("MPC>> * Configuration file error *\nMessage: {0} \n\nTrace: {1}", e.Message, e.StackTrace); return null; }
+            catch (Exception e) { throw new FileNotFoundException("CONFIG FILE NOT FOUND");  }
         }
 
     }

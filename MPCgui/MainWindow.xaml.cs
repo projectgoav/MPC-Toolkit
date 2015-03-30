@@ -27,9 +27,12 @@ namespace MPCgui
 
             //Setup API to suuport message redirection
             MPC.api.MPC.MPCOut.OnAPIMessage += MPCOut_OnAPIMessage;
+
             MPC.api.MPC.init();
 
-            MPCOut.Items.Add("MPC> Waiting... ");
+
+            MPCOut.Items.Add("MPC Ready");
+            btnAPIVersion.Content += MPC.api.MPC.GetVersion();
         }
 
         //Handles output from API to the GUI
@@ -40,21 +43,18 @@ namespace MPCgui
 
         private void btnCompile_Click(object sender, RoutedEventArgs e)
         {
-            MPCOut.Items.Add("MPC> Compiling...");
-            MPCOut.Items.Add("MPC>> DONE");
+            MPC.api.MPC.Compile(null);
         }
 
         private void btnPublish_Click(object sender, RoutedEventArgs e)
         {
-            MPCOut.Items.Add("MPC> Publishing...");
-            MPCOut.Items.Add("MPC>> DONE");
+            MPC.api.MPC.Publish(null);
         }
 
         //Clears output screen of Data
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             MPCOut.Items.Clear();
-            MPCOut.Items.Add("MPC> Waiting...");
         }
 
 

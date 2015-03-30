@@ -32,10 +32,15 @@ namespace MPC.api
         /// Initilize MPC API
         /// TODO Add startup options here
         /// </summary>
-        public static void init()
+        public static bool init()
         {
-            cfg = ConfigurationIO.LoadConfig(Config.CONFIG_FILE);
+            try
+            {
+                cfg = ConfigurationIO.LoadConfig(Config.CONFIG_FILE);
+            }
+            catch (Exception e) { MPCOut.SendMessage(e.Message); return false; }
             Uploader = new Publish(cfg.Username);
+            return true;
         }
 
         /// <summary>
@@ -44,6 +49,12 @@ namespace MPC.api
         /// <param name="cmd"></param>
         public static void Compile(string[] cmd)
         {
+            if (cfg == null)
+            {
+                MPCOut.SendMessage("Missing configuration file.");
+                return;
+            }
+
             Compiler.Run(cmd);
         }
 
@@ -54,9 +65,21 @@ namespace MPC.api
         /// <returns></returns>
         public static bool Publish(string[] cmd)
         {
+            if (cfg == null)
+            {
+                MPCOut.SendMessage("Missing configuration file.");
+                return false;
+            }
+
             return Uploader.Run(cmd);
         }
 
+
+
+        public static string GetVersion()
+        {
+            return "V1.1(A)";
+        }
 
 
     }
