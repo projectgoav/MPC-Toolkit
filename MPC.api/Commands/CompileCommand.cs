@@ -11,6 +11,9 @@ using MPC.Utils;
 
 namespace MPC.Commands
 {
+    /// <summary>
+    /// Performs the compile command, putting the header, nav and footer as well as any extra content onto the pages of the website
+    /// </summary>
     public class CompileCommand : AbstractCommand
     {
         private HTMLLoader PageLoader;
