@@ -7,8 +7,8 @@
     <ProjectGuid>{9A66FCE2-471B-4D71-9D77-033E89D78A12}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MPC.api</RootNamespace>
-    <AssemblyName>MPC.api</AssemblyName>
+    <RootNamespace>MPC</RootNamespace>
+    <AssemblyName>MPC</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PrimaryVersionType>AssemblyVersionAttribute</PrimaryVersionType>
@@ -16,8 +16,8 @@
     <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
     <UpdateAssemblyFileVersion>False</UpdateAssemblyFileVersion>
     <UpdateAssemblyInfoVersion>False</UpdateAssemblyInfoVersion>
-    <AssemblyVersionSettings>None.IncrementOnDemand.Increment.DateStamp</AssemblyVersionSettings>
-    <AssemblyVersion>1.0.16.15089</AssemblyVersion>
+    <AssemblyVersionSettings>None.IncrementOnDemand.Increment.TimeStamp</AssemblyVersionSettings>
+    <AssemblyVersion>1.1.21.2052</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,15 +49,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AbstractCommand.cs" />
+    <Compile Include="API\ICommand.cs" />
     <Compile Include="Commands\Compile.cs" />
+    <Compile Include="Commands\CompileCommand.cs" />
     <Compile Include="Commands\Publish.cs" />
     <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="IO\ConfigurationIO.cs" />
     <Compile Include="IO\FileSystemAccess.cs" />
     <Compile Include="IO\HTMLLoader.cs" />
     <Compile Include="MPC.cs" />
     <Compile Include="MPCOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Config.cs" />
+    <Compile Include="Utils\HTMLLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

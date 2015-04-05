@@ -10,6 +10,8 @@ using MPC.api.Configuration;
 
 namespace MPC.api.Commands
 {
+    //Doesn't fail building just now, as I don't like seeing errors in my code :(
+    [Obsolete("This Command is no longer in use. Please use MPC.Commands.CompileCompileCommand instead.", false)]
     public class Compile
     {
         /// <summary>
