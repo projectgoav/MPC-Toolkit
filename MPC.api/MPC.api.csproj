@@ -51,20 +51,27 @@
   <ItemGroup>
     <Compile Include="API\AbstractCommand.cs" />
     <Compile Include="API\ICommand.cs" />
+    <Compile Include="CommandPool.cs" />
     <Compile Include="Commands\Compile.cs" />
     <Compile Include="Commands\CompileCommand.cs" />
     <Compile Include="Commands\CopyCommand.cs" />
     <Compile Include="Commands\Publish.cs" />
+    <Compile Include="Commands\PublishCommand.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="IO\ConfigurationIO.cs" />
     <Compile Include="IO\FileSystemAccess.cs" />
     <Compile Include="IO\HTMLLoader.cs" />
     <Compile Include="MPC.cs" />
+    <Compile Include="MPCConduit.cs" />
     <Compile Include="MPCOut.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Config.cs" />
+    <Compile Include="Utils\FileSystemAccess.cs" />
     <Compile Include="Utils\HTMLLoader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ToDo.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
