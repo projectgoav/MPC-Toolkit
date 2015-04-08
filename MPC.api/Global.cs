@@ -13,27 +13,31 @@ namespace MPC
     /// </summary>
     public class Global
     {
-        //Global flag to ensure config is not reset during runtime.
-        private static bool ConfigSet = false;
-
         /// <summary>
         /// MPC Configuration Object
         /// </summary>
-        public static Config Config { get; private set; }
-
+        private static Config _Config;
 
         /// <summary>
-        /// Set the Configuration for MPC Framework
+        /// Get the Config. Same as GetConfig method.
         /// </summary>
-        /// <param name="NewConfig"></param>
-        public static void SetConfig(Config NewConfig)
+        public static Config Config { get { return GetConfig(); } }
+
+        /// <summary>
+        /// Get the Global config
+        /// </summary>
+        /// <returns>Configration Class</returns>
+        public static Config GetConfig()
         {
-            //Only set if there isn't one already
-            if (!ConfigSet)
+            //Making sure this is only instanciated once
+            if (_Config == null)
             {
-                Config = NewConfig;
-                ConfigSet = true;
+                _Config = new Config();
             }
+            return _Config;
         }
     }
+
+
+
 }

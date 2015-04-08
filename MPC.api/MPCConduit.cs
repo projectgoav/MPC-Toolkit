@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using MPC.Commands;
+
 namespace MPC
 {
     /// <summary>
-    /// Conduit object allowing access to interals of API. This is the default implementation of the API, if you wish to use standard bits with standard settings
+    /// Conduit object allowing access to interals of API with default settings and implementation
     /// </summary>
     public class MPCConduit
     {
@@ -20,12 +22,36 @@ namespace MPC
         /// </summary>
         public CommandPool CommandPool;
 
-
+    
         public MPCConduit()
         {
             Global = new Global();
             CommandPool = new CommandPool();
         }
+
+
+        /// <summary>
+        /// Runs a compile of the MPC site
+        /// </summary>
+        public void RunCompile()
+        {
+            CommandPool.PutCommand(new CompileCommand());
+        }
+
+        /// <summary>
+        /// Runs a compile of the MPC site
+        /// </summary>
+        /// <param name="FullCopy">If True will copy CSS, JS and other design files.</param>
+        public void RunCompile(bool FullCopy)
+        {
+            RunCompile();
+
+            if (FullCopy)
+            {
+                CommandPool.PutCommand(new CopyCommand());
+            }
+        }
+
 
         //Stupid, for testing purposes
         public string Version() { return "V1.1"; }

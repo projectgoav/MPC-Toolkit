@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.IO;
+
+using Nini.Config;
+
 namespace MPC.Utils
 {
     /// <summary>
@@ -10,6 +14,39 @@ namespace MPC.Utils
     /// </summary>
     public class Config
     {
+        /// <summary>
+        /// Creates and loads in the given configuration options
+        /// </summary>
+        public Config()
+        {
+            try
+            {
+                IniConfigSource s = new IniConfigSource(CONFIG_FILE);
+
+                //Template Sources
+                HeaderTemplate = s.Configs["Templates"].GetString("Header");
+                FooterTemplate = s.Configs["Templates"].GetString("Footer");
+                NavTemplate = s.Configs["Templates"].GetString("NavBar");
+                ModalTemplate = s.Configs["Templates"].GetString("Modal");
+
+                //Where to Publish finished products
+                PublishLocation = s.Configs["Sources"].GetString("Publish");
+
+                //Get all the pages to fix & where they are stored
+                Pages = s.Configs["Sources"].GetString("Pages").Split(',');
+                Folders = s.Configs["Sources"].GetString("Folders").Split(',');
+                SourceLocation = s.Configs["Sources"].GetString("Source");
+                DesignLocation = s.Configs["Sources"].GetString("Design");
+
+                Username = s.Configs["FTP"].GetString("Username");
+            }
+               
+            // Simple throw here
+            // TODO make better
+            catch (Exception e) { throw e; }
+        }
+
+
         /// <summary>
         /// Fixed location of configuration ini file
         /// </summary>
