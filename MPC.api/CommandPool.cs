@@ -31,7 +31,18 @@ namespace MPC
         {
             while (Pool.Count > 0)
             {
-                Pool.Dequeue().Run();
+
+                //Try and Run the command stages, logging the results if there was a failure
+                ICommand Head = Pool.Dequeue();
+
+                try
+                {
+                    Head.Setup();
+                    Head.Run();
+                    Head.TearDown();
+                }
+                catch (NotImplementedException) { Console.WriteLine("Method not found. Assuming not required"); }
+                catch (Exception e) { Console.WriteLine(e.Message); }
             }
         }
 

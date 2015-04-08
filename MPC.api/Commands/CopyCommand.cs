@@ -18,14 +18,14 @@ namespace MPC.Commands
         private string CopyLocation;
         private string[] Folders;
 
-        public override void Setup()
+        public void Setup()
         {
             SourceLocation = Global.Config.DesignLocation;
             CopyLocation = Global.Config.PublishLocation;
             Folders = Global.Config.Folders;
         }
 
-        public override void Run()
+        public void Run()
         {
             //Copy all directories
             for (int i = 0; i < Folders.Length; ++i)
@@ -34,7 +34,7 @@ namespace MPC.Commands
             }
         }
 
-        public override void TearDown()
+        public void TearDown()
         {
             throw new NotImplementedException();
         }
