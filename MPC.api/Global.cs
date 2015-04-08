@@ -19,6 +19,18 @@ namespace MPC
         private static Config _Config;
 
         /// <summary>
+        /// MPC Logger
+        /// </summary>
+        private static Logger _Log;
+
+        private static FileLogger _FileLogger;
+
+        /// <summary>
+        /// Gets the Logger used by MPC
+        /// </summary>
+        public static Logger Log { get { return GetLogger(); } }
+
+        /// <summary>
         /// Get the Config. Same as GetConfig method.
         /// </summary>
         public static Config Config { get { return GetConfig(); } }
@@ -35,6 +47,28 @@ namespace MPC
                 _Config = new Config();
             }
             return _Config;
+        }
+
+        /// <summary>
+        /// Returns Logger instance
+        /// </summary>
+        /// <returns>MPC Logger</returns>
+        public static Logger GetLogger()
+        {
+            //Making sure this is only instanciated once
+            if (_Log == null)
+            {
+                _Log = new Logger();
+            }
+            return _Log;
+        }
+
+        /// <summary>
+        /// Enables File logging in MPC
+        /// </summary>
+        public static void EnableFileLogging()
+        {
+            _FileLogger = new FileLogger(Log);
         }
     }
 

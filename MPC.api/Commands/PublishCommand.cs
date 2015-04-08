@@ -9,6 +9,9 @@ using MPC.API;
 
 namespace MPC.Commands
 {
+    /// <summary>
+    /// Performs the uploading of website
+    /// </summary>
     public class PublishCommand : AbstractCommand
     {
 

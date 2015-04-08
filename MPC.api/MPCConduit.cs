@@ -52,6 +52,14 @@ namespace MPC
             }
         }
 
+        /// <summary>
+        /// Enables file logging for this application
+        /// </summary>
+        public void EnableLogging()
+        {
+            Global.EnableFileLogging();
+        }
+
 
         //Stupid, for testing purposes
         public string Version() { return "V1.1"; }

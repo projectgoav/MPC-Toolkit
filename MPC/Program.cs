@@ -6,7 +6,6 @@ using System.Text;
 using System.IO;
 
 using Nini.Config;
-using MPC.api;
 
 namespace MPC
 {
@@ -15,7 +14,9 @@ namespace MPC
     /// </summary>
     class Program
     {
-        private string[] Commands = { "compile", "publish", "clean" };
+        private string[] Commands = { "compile", "publish", "clean", "log" };
+
+        private MPCConduit MPC;
 
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace MPC
         private void Run()
         {
             //Load configuration settings
-            api.MPC.init();
+            MPC = new MPCConduit();
 
             //Enter Main Command Loop and get input from user
             Console.Write("MPC> ");
@@ -49,9 +50,10 @@ namespace MPC
                 {
                     switch (cmd[0])
                     {
-                        case "compile": { api.MPC.Compile(null); break; }
+                        case "compile": { MPC.RunCompile(); break; }
                         case "clean":   { Clean(cmd); break; }
-                        case "publish": { api.MPC.Publish(null); break; }
+                        case "publish": { Console.WriteLine("<< Something went wrong :( >>"); break; } //api.MPC.Publish(null); break; }
+                        case "log": { MPC.EnableLogging(); break; }
                     }
                 }
 
