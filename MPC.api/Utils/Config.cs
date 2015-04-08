@@ -39,13 +39,19 @@ namespace MPC.Utils
                 DesignLocation = s.Configs["Sources"].GetString("Design");
 
                 Username = s.Configs["FTP"].GetString("Username");
+
+                IsLoaded = true;
             }
                
             // Simple throw here
             // TODO make better
-            catch (Exception e) { throw e; }
+            catch (Exception e) { IsLoaded = false; }
         }
 
+        /// <summary>
+        /// Loaded flag, to make sure settings has been loaded correctly
+        /// </summary>
+        public bool IsLoaded = false;
 
         /// <summary>
         /// Fixed location of configuration ini file

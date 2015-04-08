@@ -52,6 +52,12 @@ namespace MPC
         /// <param name="C">Command to be added.</param>
         public void PutCommand(ICommand C)
         {
+            if (Global.Config.IsLoaded == false)
+            {
+                Console.WriteLine("Configuration error. Command not pooled");
+                return;
+            }
+
             Pool.Enqueue(C);
             OnCommandPooled();  //Make sure to tell the pool we have some data in it
         }
